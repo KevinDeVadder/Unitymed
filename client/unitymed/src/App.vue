@@ -1,16 +1,29 @@
 <template>
-  <div id="app">
-    <v-app>
-      <v-content>
-        <router-view/>
-      </v-content>
-    </v-app>
-  </div>
+<div id="app">
+  <v-app>
+    
+      <v-toolbar flat app color="green darken-1" class="white--text">
+        <v-toolbar-side-icon @click="drawer = !drawer" class="white--text"></v-toolbar-side-icon>
+        <v-toolbar-title>UnityMed</v-toolbar-title>
+      </v-toolbar>
+
+          <v-navigation-drawer app v-model="drawer"><p>11</p> </v-navigation-drawer>
+    <v-content>
+    </v-content>
+  </v-app>
+</div>
 </template>
 
 <script>
+
 export default {
-  name: 'App'
+
+  name: 'App',
+  data () {
+    return {
+      drawer: false
+    }
+  }
 }
 </script>
 
@@ -20,7 +33,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
