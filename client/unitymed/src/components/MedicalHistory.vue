@@ -1,14 +1,14 @@
 <template>
   <div>
-    <medic></medic>
+    <medic-history></medic-history>
   </div>
 </template>
 
 <script>
-import Medic from "./Medic"
+import medHistory from "./History"
 export default {
   components:{
-    'medic':Medic,
+    'medic-history':medHistory,
   },
   data(){
     return{
