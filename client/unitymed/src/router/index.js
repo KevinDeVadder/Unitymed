@@ -7,8 +7,7 @@ import Login from '@/components/Login'
 import Register from '@/components/Register/index'
 import UserStory from '@/components/UserStory'
 import MedicStory from '@/components/MedicStory'
-
-
+import MedicList from '@/components/Medic/MedicList'
 import AccessDenied from '@/components/AccessDenied'
 
 
@@ -74,6 +73,12 @@ let router = new Router({
       meta: { 
         // requiresAuth: true,
       }
+    },
+    {
+      path: '/medlist',
+      name: 'MedicList',
+      component: MedicList
+
     }
   ]
 })

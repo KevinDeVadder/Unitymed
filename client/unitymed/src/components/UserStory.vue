@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import image from "../assets/box-1.jpg"
 export default {
 
 }
@@ -29,6 +28,17 @@ export default {
         color: white;
         font-size: 5vw;
         cursor: pointer;
+    }
+    
+    
+    #box1:hover{
+        background-image: url("../assets/box-1copy.jpg");
+    }
+   #box2:hover{
+        background-image: url("../assets/Component-2copy.png");
+    }
+    #box3:hover{
+          background-image: url("../assets/Component-3copy.png");
     }
 
 

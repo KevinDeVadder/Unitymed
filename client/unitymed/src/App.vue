@@ -8,11 +8,13 @@
       </v-toolbar>
 
           <v-navigation-drawer app v-model="drawer">
+            <p class="navMenu">Menu</p> 
             <p class="nav" v-if='!isUserLoggedIn'>Login</p> 
             <p class="nav" v-if='!isUserLoggedIn'>Register</p>
             <p class="nav" v-if='isUserLoggedIn'>Profile</p> 
             <p class="nav" v-if='isUserLoggedIn'>Messages</p>
             <p class="nav" v-if='isUserLoggedIn' @click='logOut'>Sign-out</p>
+
           </v-navigation-drawer>
     <v-content>
 
@@ -58,11 +60,22 @@ export default {
   border-bottom: 1px grey solid;
   cursor: pointer
 }
+.navMenu{
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  margin-bottom: 0;
+  font-size: 1em;
+  border-bottom: 1px grey solid;
+  background-color: #2E7D32;
+  color: white;
+  font-size: 1.5em;
+}
 
 .nav:hover{
   background-color: #A5D6A7;
   color: white;
   box-shadow:10px black;
+  cursor: pointer;
 }
 
 #app {
