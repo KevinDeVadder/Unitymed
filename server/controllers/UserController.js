@@ -8,6 +8,7 @@ module.exports = {
         // console.log(req.body)
         try{
             const user = await UserModel.create({ name: req.body.name, email: req.body.email, password: req.body.password })
+           if(req.body.status == 0){
             const emailToken = jwt.sign(
                 {user: user._id}, 
                 req.app.get('secretKey'),
@@ -25,6 +26,10 @@ module.exports = {
                     res.send({"status": "email sent"})
                 }
             ).catch(next)
+           }
+           else{
+               res.send({'message': 'User added, wait for admin to accept him'})
+           }
         }
         catch(err){
             next(err)
@@ -68,5 +73,14 @@ module.exports = {
             }
         });
         return res.redirect('http://localhost:8080/login');
+    },
+    async getAllUsers(req, res, next){
+        try{
+            const users = await UserModel.find({})
+            res.send(users)
+        }
+        catch(err){
+            next(err)
+        }
     }
    }
