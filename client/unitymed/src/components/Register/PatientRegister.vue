@@ -15,6 +15,15 @@
             required
           ></v-text-field>
           <v-text-field
+            ref="Name"
+            v-model="user.name"
+            :rules="[() => !!name || 'This field is required']"
+            :error-messages="errorMessages"
+            label="Name"
+            placeholder="Name"
+            required
+          ></v-text-field>
+          <v-text-field
             ref="password"
             v-model="user.password"
             :type="show1 ? 'text' : 'password'"
@@ -28,11 +37,11 @@
         </v-card-text>
         <v-divider class="mt-5"></v-divider>
         <v-card-actions>
-          <router-link to="/register" tag="v-btn" flat>Register</router-link>
+          <router-link to="/login" tag="v-btn" flat>I'm Mercy</router-link>
           <v-spacer></v-spacer>
           <v-slide-x-reverse-transition>
           </v-slide-x-reverse-transition>
-          <v-btn color="primary" flat @click="submit">Login</v-btn>
+          <v-btn color="primary" flat @click="submit">Register</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -41,18 +50,17 @@
 </div>
 </template>
 <script>
-import index from "./Register/index"
 
 export default {
             components:{
-                'index': index
 },
     data(){
             return{
                 component: 'index',
                 user: {
                     email: "",
-                    password: ""
+                    password: "",
+                    name: ""
             }
         }
     }
