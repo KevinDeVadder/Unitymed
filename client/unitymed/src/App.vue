@@ -9,7 +9,9 @@
 
           <v-navigation-drawer app v-model="drawer"><p>11</p> </v-navigation-drawer>
     <v-content>
+
       <router-view/>
+
     </v-content>
   </v-app>
 </div>
@@ -34,5 +36,9 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+}
+.v-toolbar__title{
+  display: flex;
+  justify-content: center;
 }
 </style>
