@@ -6,6 +6,7 @@ import Dashboard from '@/components/Dashboard'
 import Login from '@/components/Login'
 import Register from '@/components/Register/index'
 import UserStory from '@/components/UserStory'
+import MedicStory from '@/components/MedicStory'
 
 
 import AccessDenied from '@/components/AccessDenied'
@@ -59,10 +60,20 @@ let router = new Router({
       }
     },
     {
-      path: '/home',
+      path: '/patient',
       name: 'UserStory',
-      component: UserStory
-
+      component: UserStory,
+      meta: { 
+        requiresAuth: true,
+      }
+    },
+    {
+      path: '/medic',
+      name: 'MedicStory',
+      component: MedicStory,
+      meta: { 
+        // requiresAuth: true,
+      }
     }
   ]
 })
@@ -94,7 +105,7 @@ router.beforeEach((to, from, next)=>{
       next()
     }
     else{
-      next({ name: 'groups'})
+      next({ name: 'UserStory'})
     }
   }
   else {

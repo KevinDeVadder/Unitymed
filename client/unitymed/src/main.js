@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
+import {store} from './store/index'
 
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
@@ -15,5 +16,6 @@ new Vue({
   el: '#app',
   router,
   components: { App },
+  store: store,
   template: '<App/>'
 })

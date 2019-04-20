@@ -60,9 +60,9 @@ export default {
           // console.log(response.data);
           localStorage.setItem('user',JSON.stringify(response.data.user))
           localStorage.setItem('jwt',response.data.token)
-          // this.$store.commit('switchUserState')
+          this.$store.commit('switchUserState')
           if(response.data.user.status==0){
-            this.$router.push({name:'patient'})
+            this.$router.push({name:'UserStory'})
           }
           else if(response.data.user.status==1){
             this.$router.push({name:'medic'})

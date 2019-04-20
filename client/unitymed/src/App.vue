@@ -8,9 +8,11 @@
       </v-toolbar>
 
           <v-navigation-drawer app v-model="drawer">
-            <p class="nav">Profile</p> 
-            <p class="nav">Messages</p>
-            <p class="nav">Sign-out</p>
+            <p class="nav" v-if='!isUserLoggedIn'>Login</p> 
+            <p class="nav" v-if='!isUserLoggedIn'>Register</p>
+            <p class="nav" v-if='isUserLoggedIn'>Profile</p> 
+            <p class="nav" v-if='isUserLoggedIn'>Messages</p>
+            <p class="nav" v-if='isUserLoggedIn' @click='logOut'>Sign-out</p>
           </v-navigation-drawer>
     <v-content>
 
@@ -30,6 +32,19 @@ export default {
     return {
       drawer: false
     }
+  },	
+  computed: {
+	    isUserLoggedIn(){
+        return this.$store.getters.getUserState
+      }
+  },
+	methods: {
+  		logOut(){
+        localStorage.removeItem('user')
+        localStorage.removeItem('jwt');
+        this.$store.commit('switchUserState')
+        this.$router.push('login')
+      }
   }
 }
 </script>
@@ -41,6 +56,7 @@ export default {
   margin-bottom: 0;
   font-size: 1em;
   border-bottom: 1px grey solid;
+  cursor: pointer
 }
 
 .nav:hover{
