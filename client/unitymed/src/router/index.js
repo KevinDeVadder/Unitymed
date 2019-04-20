@@ -6,8 +6,7 @@ import Dashboard from '@/components/Dashboard'
 import Login from '@/components/Login'
 import Register from '@/components/Register/index'
 import UserStory from '@/components/UserStory'
-
-
+import MedicList from '@/components/Medic/MedicList'
 import AccessDenied from '@/components/AccessDenied'
 
 
@@ -62,6 +61,12 @@ let router = new Router({
       path: '/home',
       name: 'UserStory',
       component: UserStory
+
+    },
+    {
+      path: '/medlist',
+      name: 'MedicList',
+      component: MedicList
 
     }
   ]

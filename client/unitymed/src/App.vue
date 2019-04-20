@@ -8,6 +8,7 @@
       </v-toolbar>
 
           <v-navigation-drawer app v-model="drawer">
+            <p class="navMenu">Menu</p> 
             <p class="nav">Profile</p> 
             <p class="nav">Messages</p>
             <p class="nav">Sign-out</p>
@@ -42,11 +43,22 @@ export default {
   font-size: 1em;
   border-bottom: 1px grey solid;
 }
+.navMenu{
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  margin-bottom: 0;
+  font-size: 1em;
+  border-bottom: 1px grey solid;
+  background-color: #2E7D32;
+  color: white;
+  font-size: 1.5em;
+}
 
 .nav:hover{
   background-color: #A5D6A7;
   color: white;
   box-shadow:10px black;
+  cursor: pointer;
 }
 
 #app {
