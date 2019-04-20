@@ -24,13 +24,13 @@
           <v-icon
             small
             class="mr-2"
-            @click="acceptMedic(props.item._id)"
+            @click="acceptMedic(props.item)"
           >
             check
           </v-icon>
           <v-icon
             small
-            @click="rejectMedic(props.item._id)"
+            @click="rejectMedic(props.item)"
           >
             close
           </v-icon>
@@ -129,6 +129,32 @@ export default {
         this.medics = (await UserService.getAllUsers({status:1, confirmed: false})).data
         this.users = (await UserService.getAllUsers({confirmed: true})).data
         console.log(this.users)
+    },
+    methods: {
+        async acceptMedic(pmedic){
+            if (confirm("Accept " + pmedic.name)) {
+                try{
+                    const medic = (await UserService.confirmMedic(pmedic._id, {confirmed: true})).data
+                    console.log(medic)
+                    this.$router.go();
+                }
+                catch(err){
+                    console.log(err)
+                } 
+            }
+        },
+        async rejectMedic(pmedic){
+            if (confirm("Remove " + pmedic.name)) {
+                try{
+                    const medic = (await UserService.confirmMedic(pmedic._id, {confirmed: false})).data
+                    console.log(medic)
+                    this.$router.go();
+                }
+                catch(err){
+                    console.log(err)
+                } 
+            }
+        },
     },
 }
 </script>

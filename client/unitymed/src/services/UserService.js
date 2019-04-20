@@ -8,4 +8,8 @@ export default {
     addSpecial(payload){
         return Api().post('users', payload)
     },
+    confirmMedic(medicId, status){
+        if (status.confirmed == true) return Api().put(`/medic/${medicId}/confirm`, status)
+        else return Api().delete(`/medic/${medicId}`)
+    }
 }

@@ -15,6 +15,8 @@ router.get('/confirm/:token', userController.confirm)
 router.get('/users',  userController.getAllUsers)
 
 router.get('/medics',  validators.validateUser, medicController.getAllMedics)
+router.put('/medic/:id/confirm', medicController.confirmMedic)
+router.delete('/medic/:id', medicController.deleteMedic)
 
 router.post('/test', (req, res)=>{
     res.send(req.body)

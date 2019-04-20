@@ -44,18 +44,21 @@
 import index from "./Register/index"
 
 export default {
-            components:{
-                'index': index
-},
-    data(){
-            return{
-                component: 'index',
-                user: {
-                    email: "",
-                    password: ""
-            }
-        }
+  components:{
+      'index': index
+  },
+  data(){
+    return{
+      component: 'index',
+      user: {
+        email: "",
+        password: ""
+      }
     }
+  },
+  methods: {
+    
+  },
 }
 </script>
 <style scoped>

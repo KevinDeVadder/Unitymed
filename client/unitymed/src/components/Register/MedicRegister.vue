@@ -7,7 +7,7 @@
           <v-text-field
             ref="email"
             v-model="user.email"
-            :rules="[() => !!e-mail || 'This field is required']"
+            :rules="[() => !!user.email || 'This field is required']"
             :error-messages="errorMessages"
             label="Email"
             placeholder="basicemail@gmail.com"
@@ -16,7 +16,7 @@
           <v-text-field
             ref="name"
             v-model="user.name"
-            :rules="[() => !!e-mail || 'This field is required']"
+            :rules="[() => !!user.name || 'This field is required']"
             :error-messages="errorMessages"
             label="Name"
             placeholder="Full Name"
@@ -27,37 +27,38 @@
             v-model="user.password"
             :type="show1 ? 'text' : 'password'"
             :rules="[
-              () => !!password || 'This field is required',
+              () => !!user.password || 'This field is required',
               passwordCheck
             ]"
             label="Password"
+            placeholder="Password"
             required
           ></v-text-field>
           <v-text-field
-            ref="Numar Certificat"
-            v-model="user.nrcert"
-            :rules="[() => !!nrcert || 'This field is required']"
+            ref="Certificate number"
+            v-model="user.certificate.number"
+            :rules="[() => !!user.certificate.number || 'This field is required']"
             :error-messages="errorMessages"
-            label="Numar Certificat"
-            placeholder="Numar"
+            label="Certificate number"
+            placeholder="Number"
             required
           ></v-text-field>
           <v-text-field
-            ref="Data Certificat"
-            v-model="user.dataCert"
-            :rules="[() => !!dataCert || 'This field is required']"
+            ref="Certificate issuing date"
+            v-model="user.certificate.date"
+            :rules="[() => !!user.certificate.date || 'This field is required']"
             :error-messages="errorMessages"
-            label="Data Certificat"
-            placeholder="Data"
+            label="Certificate issuing date"
+            placeholder="Certificate issuing date"
             required
           ></v-text-field>
           <v-text-field
-            ref="Specializare"
+            ref="Specialization"
             v-model="user.specializare"
-            :rules="[() => !!specializare || 'This field is required']"
+            :rules="[() => !!user.specializare || 'This field is required']"
             :error-messages="errorMessages"
-            label="Specializare"
-            placeholder="Specializare"
+            label="Specialization"
+            placeholder="Specialization"
             required
           ></v-text-field>
         </v-card-text>
@@ -67,7 +68,7 @@
           <v-spacer></v-spacer>
           <v-slide-x-reverse-transition>
           </v-slide-x-reverse-transition>
-          <v-btn color="primary" flat @click="submit">Register</v-btn>
+          <v-btn color="primary" flat @click="register">Register</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -75,20 +76,39 @@
   </div>
 </template>
 <script>
+import AuthenticationService from '@/services/AuthenticationService'
 
 export default {
-    data(){
-            return{
-                user: {
-                    email: "",
-                    password: "",
-                    nrcert: "",
-                    dataCert: "",
-                    specializare: ""
-
-            }
-        }
+  data(){
+    return{
+      user: {
+        email: "",
+        password: "",
+        certificate:{
+          number: '',
+          date: ''
+        },
+        specializare: "",
+        status: 1
+      },
     }
+  },
+  methods: {
+    async register(){
+      if(!(this.user.email === '') && !(this.user.password === '') && !(this.user.name === '')){
+        // console.log("hit")
+        try{
+          const status = await AuthenticationService.register(this.user)
+          alert("You've been registered into our database. Please wait for an admin to review your account. It can take up to 3 days.")
+          this.$router.push('/login')
+        }
+        catch(err){
+          console.log(err)
+        }
+      }
+    }    
+  },
+
 }
 </script>
 <style scoped>

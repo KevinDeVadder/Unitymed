@@ -40,6 +40,7 @@ export default {
         margin-bottom: 6vh;
         font-size: calc(3em);
         color: white;
+        cursor: pointer
     }
     .buttons{
         display: flex;
