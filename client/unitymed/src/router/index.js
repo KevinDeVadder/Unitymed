@@ -1,16 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+<<<<<<< HEAD
 
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 
 import AccessDenied from '@/components/AccessDenied'
+=======
+import Login from '@/components/Login'
+>>>>>>> 5a484c0fd9792a054cf9d4cdb7304258affa7d23
 
 Vue.use(Router)
 
 let router =  new Router({
   routes: [
     {
+<<<<<<< HEAD
       path: '*',
       redirect: '/login',
     },
@@ -36,6 +41,12 @@ let router =  new Router({
         guest: true
       }
     },
+=======
+      path: '/',
+      name: 'Login',
+      component: Login
+    }
+>>>>>>> 5a484c0fd9792a054cf9d4cdb7304258affa7d23
   ]
 })
 
