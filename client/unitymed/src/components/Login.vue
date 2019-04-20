@@ -8,7 +8,7 @@
           <v-text-field
             ref="email"
             v-model="user.email"
-            :rules="[() => !!email || 'This field is required']"
+            :rules="[() => !!user.email || 'This field is required']"
             :error-messages="errorMessages"
             label="Email"
             placeholder="basicemail@gmail.com"
@@ -19,7 +19,7 @@
             v-model="user.password"
             :type="show1 ? 'text' : 'password'"
             :rules="[
-              () => !!password || 'This field is required',
+              () => !!user.password || 'This field is required',
               passwordCheck
             ]"
             label="Password"
@@ -32,7 +32,7 @@
           <v-spacer></v-spacer>
           <v-slide-x-reverse-transition>
           </v-slide-x-reverse-transition>
-          <v-btn color="primary" flat @click="submit">Login</v-btn>
+          <v-btn color="primary" flat @click="login">Login</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -41,15 +41,11 @@
 </div>
 </template>
 <script>
-import index from "./Register/index"
+import AuthenticationService from '@/services/AuthenticationService'
 
 export default {
-  components:{
-      'index': index
-  },
   data(){
     return{
-      component: 'index',
       user: {
         email: "",
         password: ""
@@ -57,7 +53,29 @@ export default {
     }
   },
   methods: {
-    
+    async login(){
+      if(!(this.user.email === '') && !(this.user.password === '')){
+        try{
+          const response = (await AuthenticationService.login(this.user)).data
+          // console.log(response.data);
+          localStorage.setItem('user',JSON.stringify(response.data.user))
+          localStorage.setItem('jwt',response.data.token)
+          // this.$store.commit('switchUserState')
+          if(response.data.user.status==0){
+            this.$router.push({name:'patient'})
+          }
+          else if(response.data.user.status==1){
+            this.$router.push({name:'medic'})
+          }
+          else if(response.data.user.status==2){
+            this.$router.push('/dashboard')
+          }
+        }
+        catch(err){
+          console.log(err)
+        }
+      }
+    }
   },
 }
 </script>
