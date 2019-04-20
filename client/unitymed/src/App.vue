@@ -9,6 +9,7 @@
 
           <v-navigation-drawer app v-model="drawer"><p>11</p> </v-navigation-drawer>
     <v-content>
+      <router-view/>
     </v-content>
   </v-app>
 </div>

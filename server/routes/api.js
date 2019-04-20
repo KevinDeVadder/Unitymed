@@ -12,7 +12,7 @@ router.post('/register', userController.create);
 router.post('/authenticate', userController.authenticate);
 router.get('/confirm/:token', userController.confirm)
 
-router.get('/users', validators.validateAdmin, userController.getAllUsers)
+router.get('/users',  userController.getAllUsers)
 
 router.get('/medics',  validators.validateUser, medicController.getAllMedics)
 

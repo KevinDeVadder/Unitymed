@@ -7,8 +7,8 @@ module.exports = {
     async create(req, res, next) {
         // console.log(req.body)
         try{
+            if(req.body.status == 0){
             const user = await UserModel.create({ name: req.body.name, email: req.body.email, password: req.body.password })
-           if(req.body.status == 0){
             const emailToken = jwt.sign(
                 {user: user._id}, 
                 req.app.get('secretKey'),
@@ -28,7 +28,8 @@ module.exports = {
             ).catch(next)
            }
            else{
-               res.send({'message': 'User added, wait for admin to accept him'})
+            await UserModel.create({ name: req.body.name, email: req.body.email, password: req.body.password, status: 1, certificate: req.body.certificate, specialization: req.body.specialization})
+            res.send({'message': 'Medic added, wait for admin to accept him'})
            }
         }
         catch(err){
@@ -76,7 +77,7 @@ module.exports = {
     },
     async getAllUsers(req, res, next){
         try{
-            const users = await UserModel.find({})
+            const users = await UserModel.find(req.query)
             res.send(users)
         }
         catch(err){

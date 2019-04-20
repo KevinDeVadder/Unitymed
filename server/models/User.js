@@ -36,10 +36,8 @@ const UserSchema = new Schema({
         date: String
     },
     specialization: String,
-    reviews: [{
-        user: String,
-        rating: Number
-    }]
+    reviewedBy: [String],
+    reviews:[Number]
 
 });
 
