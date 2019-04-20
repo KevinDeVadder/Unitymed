@@ -23,6 +23,7 @@
               passwordCheck
             ]"
             label="Password"
+            placeholder="Password"
             required
           ></v-text-field>
         </v-card-text>

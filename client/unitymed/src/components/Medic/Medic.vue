@@ -17,7 +17,7 @@
 
       <div class="pl-4 pr-4 pt-2 pb-2">
         <h3>Speciality: {{medic.specialization}}</h3>
-        <v-rating v-model="rating" readonly></v-rating>
+        <v-rating v-model="rating" readonly half-increments></v-rating>
         <v-btn class="green lighten-1" dark>Chat</v-btn>
       </div>
     </div>

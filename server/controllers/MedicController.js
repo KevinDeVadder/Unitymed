@@ -6,7 +6,7 @@ module.exports = {
         try{
             req.query.status = 1
             req.query.specialization = req.query.specialization.charAt(0).toUpperCase() + req.query.specialization.slice(1);
-            console.log(req.query)
+            // console.log(req.query)
             const medics = await UserModel.find(req.query, 'name reviews reviewedBy specialization')
             res.send(medics)
         }

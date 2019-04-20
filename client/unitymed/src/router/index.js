@@ -73,15 +73,15 @@ let router = new Router({
       name: 'MedicStory',
       component: MedicStory,
       meta: { 
-        // requiresAuth: true,
+        requiresAuth: true,
       }
     },
     {
       path: '/history',
-      name: 'MedicalHistory',
+      name: 'ClientHistory',
       component: MedicalHistory,
       meta: { 
-        // requiresAuth: true,
+        requiresAuth: true,
       }
     },
     {
@@ -89,14 +89,16 @@ let router = new Router({
       name: 'MedicalHistory',
       component: MedicalHistoryMed,
       meta: { 
-        // requiresAuth: true,
+        requiresAuth: true,
       }
     },
     {
       path: '/medlist',
       name: 'MedicList',
-      component: MedicList
-
+      component: MedicList,
+      meta: { 
+        requiresAuth: true,
+      }
     }
   ]
 })

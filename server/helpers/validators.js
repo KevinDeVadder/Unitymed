@@ -20,8 +20,9 @@ module.exports = {
                 res.status(400).json({ status: "error", message: err.message, data: null });
                 // console.log('this is me')
             } 
-            else if(decoded.status != 3){
+            else if(decoded.status != 2){
                 res.status(403).json({status: "error", message: "Forbidden"});
+                console.log('this is me')
             }
             else {
                 // add user id to request

@@ -83,5 +83,23 @@ module.exports = {
         catch(err){
             next(err)
         }
-    }
+    },
+    async addSpecial (req, res, next){
+        // console.log(req.body.status)
+        // console.log(req.body.requesterStatus)
+        var data = req.body;
+
+        if ((data.status == 2) && (data.requesterStatus == 2)){
+         try{
+             const user = await UserModel.create({ name: data.name, email: data.email, password: data.password, confirmed: true, status: 2});
+             res.send(user)
+         }
+         catch(err){
+             next(err)
+         }           
+        }
+        else{
+         res.status(403).json({status: "error", message: "Forbidden"});
+         }
+     }
    }
