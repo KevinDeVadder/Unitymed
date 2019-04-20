@@ -5,6 +5,8 @@ import Quiz from '@/components/Quiz/index'
 import Dashboard from '@/components/Dashboard'
 import Login from '@/components/Login'
 import Register from '@/components/Register/index'
+import UserStory from '@/components/UserStory'
+
 
 import AccessDenied from '@/components/AccessDenied'
 
@@ -55,6 +57,12 @@ let router = new Router({
       meta: {
         guest: true
       }
+    },
+    {
+      path: '/home',
+      name: 'UserStory',
+      component: UserStory
+
     }
   ]
 })

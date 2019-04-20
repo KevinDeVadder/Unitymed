@@ -7,7 +7,11 @@
         <v-toolbar-title>UnityMed</v-toolbar-title>
       </v-toolbar>
 
-          <v-navigation-drawer app v-model="drawer"><p>11</p> </v-navigation-drawer>
+          <v-navigation-drawer app v-model="drawer">
+            <p class="nav">Profile</p> 
+            <p class="nav">Messages</p>
+            <p class="nav">Sign-out</p>
+          </v-navigation-drawer>
     <v-content>
 
       <router-view/>
@@ -31,6 +35,20 @@ export default {
 </script>
 
 <style>
+.nav{
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  margin-bottom: 0;
+  font-size: 1em;
+  border-bottom: 1px grey solid;
+}
+
+.nav:hover{
+  background-color: #A5D6A7;
+  color: white;
+  box-shadow:10px black;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
