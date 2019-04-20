@@ -15,6 +15,7 @@ export default {
   data(){
     return{
       medicList: []
+
     }
   },
   async mounted() {

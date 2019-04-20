@@ -7,6 +7,8 @@ import Login from '@/components/Login'
 import Register from '@/components/Register/index'
 import UserStory from '@/components/UserStory'
 import MedicStory from '@/components/MedicStory'
+import MedicalHistory from '@/components/MedicalHistory'
+import MedicalHistoryMed from '@/components/MedicalHistoryMed'
 import MedicList from '@/components/Medic/MedicList'
 import AccessDenied from '@/components/AccessDenied'
 
@@ -70,6 +72,22 @@ let router = new Router({
       path: '/medic',
       name: 'MedicStory',
       component: MedicStory,
+      meta: { 
+        // requiresAuth: true,
+      }
+    },
+    {
+      path: '/history',
+      name: 'MedicalHistory',
+      component: MedicalHistory,
+      meta: { 
+        // requiresAuth: true,
+      }
+    },
+    {
+      path: '/historymed',
+      name: 'MedicalHistory',
+      component: MedicalHistoryMed,
       meta: { 
         // requiresAuth: true,
       }
