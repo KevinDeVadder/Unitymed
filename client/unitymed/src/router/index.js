@@ -6,6 +6,8 @@ import Quiz from '@/components/Quiz/index'
 import Dashboard from '@/components/Dashboard'
 import Login from '@/components/Login'
 import Register from '@/components/Register/index'
+import UserStory from '@/components/UserStory'
+
 
 
 Vue.use(Router)
@@ -37,6 +39,12 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
+
+    },
+    {
+      path: '/home',
+      name: 'UserStory',
+      component: UserStory
 
     }
   ]
