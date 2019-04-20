@@ -13,9 +13,10 @@ module.exports = {
                 req.app.get('secretKey'),
                 { expiresIn: '1h' }
             );
+            console.log(emailToken)
             const url = `http://localhost:4000/api/confirm/${emailToken}`;
             mail.transporter.sendMail({
-                from: 'Unitymed <devadderkevin@gmail.com>',
+                from: 'Unitymed',
                 to: user.email,
                 subject: 'Confirm account!',
                 html: 'Please click <a href="' + url +'">' + url + '</a>'
@@ -40,10 +41,9 @@ module.exports = {
                 const toSend = {
                     name: user.name,
                     email: user.email,
-                    admin: user.admin,
-                    completedQuizzes: user.completedQuizzes
+                    status: user.status,
                 }
-                const token = jwt.sign({id: user._id, admin: user.admin}, req.app.get('secretKey'), { expiresIn: '1h' });
+                const token = jwt.sign({id: user._id, status: user.status}, req.app.get('secretKey'), { expiresIn: '1h' });
                 res.json({status:"success", message: "user found!!!", data:{user: toSend, token:token}});
                 }
             }

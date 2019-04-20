@@ -9,7 +9,7 @@ const UserSchema = new Schema({
     name: {
         type: String,
         required: [true, 'Name is required'],
-        trim: true
+        trim: true 
     },
     email: {
         type: String,
@@ -22,15 +22,25 @@ const UserSchema = new Schema({
         required: [true, "Password is required"],
         trim: true
     },
-    admin: {
-        type: Boolean,
-        default: false
+    status: {
+        type: Number,
+        default: 0
+        //0-user, 1-medic, 2-admin
     },
     confirmed: {
         type: Boolean,
         default: false
     },
-    completedQuizzes:[String]
+    certificate:{
+        number: Number,
+        date: String
+    },
+    specialization: String,
+    reviews: [{
+        user: String,
+        rating: Number
+    }]
+
 });
 
 // hash user password before saving into database
