@@ -73,8 +73,8 @@ export default {
           console.log(arrSum)
             var medie = arrSum/responses.length
             console.log(medie)
-          if (medie>0.5) alert('insuficienta renala')
-          else alert('infectie urinara')
+          if (medie>0.5) this.$router.push({ path: 'medlist', query: { specialist: 'Nefrology', diagnosis: 'renal failure'} })
+          else this.$router.push({ path: 'medlist', query: { specialist: 'Nefrology', diagnosis: 'urinary infection'} })
       }
   },
 }

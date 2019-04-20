@@ -11,5 +11,8 @@ export default {
     confirmMedic(medicId, status){
         if (status.confirmed == true) return Api().put(`/medic/${medicId}/confirm`, status)
         else return Api().delete(`/medic/${medicId}`)
+    },
+    getAllMedics(query){
+        return Api().get('medics', {params:query})
     }
 }

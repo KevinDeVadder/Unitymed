@@ -29,8 +29,8 @@ export default {
   },
   methods: {
       updateFocus(){
-          if (this.response==1) alert('flu')
-          else alert('pneumonia')
+          if (this.response==1) this.$router.push({ path: 'medlist', query: { specialist: 'Pneumology', diagnosis: 'flu'} })
+          else this.$router.push({ path: 'medlist', query: { specialist: 'Pneumology', diagnosis: 'pneumonia'} })
       }
   },
 }

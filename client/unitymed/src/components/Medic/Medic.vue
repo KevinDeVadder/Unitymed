@@ -10,14 +10,14 @@
             >
             account_circle
           </v-icon>
-          Mister Gentleman Handsome Doctor
+          {{medic.name}}
         </v-toolbar-title>
         <slot name="action" />
       </v-toolbar>
 
       <div class="pl-4 pr-4 pt-2 pb-2">
-        <h3>Speciality:</h3>
-        <v-rating v-model="rating"></v-rating>
+        <h3>Speciality: {{medic.specialization}}</h3>
+        <v-rating v-model="rating" readonly></v-rating>
         <v-btn class="green lighten-1" dark>Chat</v-btn>
       </div>
     </div>
@@ -29,9 +29,17 @@
 export default {
   data(){
     return{
-      rating: '',
     }
-  }
+  },
+  props: ['medic'],
+  computed: {
+    rating(){
+      return (this.medic.reviews.reduce((a,b) => a + b, 0))/this.medic.reviews.length
+    }
+  },
+  mounted() {
+    console.log(this.medic)
+  },
 }
 </script>
 

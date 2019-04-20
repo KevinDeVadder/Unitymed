@@ -73,8 +73,8 @@ export default {
           console.log(arrSum)
             var medie = arrSum/responses.length
             console.log(medie)
-          if (medie>0.5) alert('depression')
-          else alert('anxiety')
+          if (medie>0.5) this.$router.push({ path: 'medlist', query: { specialist: 'Psychiatry', diagnosis: 'depression'} })
+          else this.$router.push({ path: 'medlist', query: { specialist: 'Psychiatry', diagnosis: 'anxiety'} })
       }
   },
 }

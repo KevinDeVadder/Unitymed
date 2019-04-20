@@ -3,10 +3,11 @@ const mail = require('../helpers/mailconfig')
 
 module.exports = {
     async getAllMedics(req, res, next) {
-        // console.log(req.body)
         try{
             req.query.status = 1
-            const medics = await UserModel.find(req.query)
+            req.query.specialization = req.query.specialization.charAt(0).toUpperCase() + req.query.specialization.slice(1);
+            console.log(req.query)
+            const medics = await UserModel.find(req.query, 'name reviews reviewedBy specialization')
             res.send(medics)
         }
         catch(err){
