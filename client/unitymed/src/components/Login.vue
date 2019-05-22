@@ -33,7 +33,7 @@
           <v-spacer></v-spacer>
           <v-slide-x-reverse-transition>
           </v-slide-x-reverse-transition>
-          <v-btn color="primary" flat @click="login">Login</v-btn>
+          <v-btn color="green darken-1" flat @click="login">Login</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>

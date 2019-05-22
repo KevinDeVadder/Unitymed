@@ -42,7 +42,7 @@
           <v-spacer></v-spacer>
           <v-slide-x-reverse-transition>
           </v-slide-x-reverse-transition>
-          <v-btn color="primary" flat @click="register">Register</v-btn>
+          <v-btn color="green darken-2" flat @click="register">Register</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>

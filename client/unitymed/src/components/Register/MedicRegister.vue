@@ -1,7 +1,7 @@
 <template>
-<div id="allin">
+<div>
   <v-layout justify-center>
-    <v-flex xs12 sm10 md8 lg6>
+    <v-flex xs12 sm10 md8 lg6 class="my-5">
       <v-card ref="form">
         <v-card-text>
           <v-text-field
@@ -68,7 +68,7 @@
           <v-spacer></v-spacer>
           <v-slide-x-reverse-transition>
           </v-slide-x-reverse-transition>
-          <v-btn color="primary" flat @click="register">Register</v-btn>
+          <v-btn color="green darken-2" flat @click="register">Register</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -112,8 +112,6 @@ export default {
 }
 </script>
 <style scoped>
-    #allin{
-        margin-top: 50px;
-        }
+
 </style>
 

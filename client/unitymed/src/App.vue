@@ -43,7 +43,7 @@ export default {
         localStorage.removeItem('user')
         localStorage.removeItem('jwt');
         this.$store.commit('switchUserState')
-        this.$router.push({name: 'login'})
+        this.$router.push({name: 'Login'})
       }
   }
 }

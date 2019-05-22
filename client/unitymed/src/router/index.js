@@ -11,7 +11,7 @@ import MedicalHistory from '@/components/MedicalHistory'
 import MedicalHistoryMed from '@/components/MedicalHistoryMed'
 import MedicList from '@/components/Medic/MedicList'
 import AccessDenied from '@/components/AccessDenied'
-import Chat from '@/components/Chat'
+import Chat from '@/components/Chat/index'
 
 
 Vue.use(Router)
@@ -106,13 +106,13 @@ let router = new Router({
       name: 'Chat',
       component: Chat,
       meta:{
-        
+        requiresAuth: true,        
       }
     }
   ]
 })
 
-
+//TODO: Add medic and user roles
 router.beforeEach((to, from, next)=>{
   if(to.matched.some(record => record.meta.requiresAuth)) {
     if (localStorage.getItem('jwt') == null) {
