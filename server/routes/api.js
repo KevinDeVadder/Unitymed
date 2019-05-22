@@ -3,6 +3,7 @@ const router = express.Router();
 
 const userController = require('../controllers/UserController')
 const medicController = require('../controllers/MedicController')
+const sessionController = require('../controllers/sessionController')
 
 const validators = require('../helpers/validators')
 
@@ -16,8 +17,12 @@ router.get('/users',  userController.getAllUsers)
 router.post('/users', validators.validateAdmin, userController.addSpecial)
 
 router.get('/medics',  validators.validateUser, medicController.getAllMedics)
-router.put('/medic/:id/confirm', medicController.confirmMedic)
-router.delete('/medic/:id', medicController.deleteMedic)
+router.put('/medic/:id/confirm', validators.validateAdmin, medicController.confirmMedic)
+router.delete('/medic/:id', validators.validateAdmin, medicController.deleteMedic)
+router.post('/medic/:id/ratings', validators.validateUser, medicController.rateMedic)
+
+router.post('/sessions', validators.validateUser, sessionController.createSession)
+router.get('/session/:id', validators.validateUser, sessionController.getOneSession)
 
 router.post('/test', (req, res)=>{
     res.send(req.body)

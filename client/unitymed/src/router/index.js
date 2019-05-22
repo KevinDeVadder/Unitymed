@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Quiz from '@/components/Quiz/index'
-import Dashboard from '@/components/Dashboard'
+import Dashboard from '@/components/Dashboard/index'
 import Login from '@/components/Login'
 import Register from '@/components/Register/index'
 import UserStory from '@/components/UserStory'
@@ -11,6 +11,7 @@ import MedicalHistory from '@/components/MedicalHistory'
 import MedicalHistoryMed from '@/components/MedicalHistoryMed'
 import MedicList from '@/components/Medic/MedicList'
 import AccessDenied from '@/components/AccessDenied'
+import Chat from '@/components/Chat'
 
 
 Vue.use(Router)
@@ -19,7 +20,7 @@ let router = new Router({
   routes: [
     {
       path: '*',
-      redirect: '/login',
+      redirect: 'login',
     },
     {
       path: '/accessdenied',
@@ -98,6 +99,14 @@ let router = new Router({
       component: MedicList,
       meta: { 
         requiresAuth: true,
+      }
+    },
+    {
+      path: '/chat/:id',
+      name: 'Chat',
+      component: Chat,
+      meta:{
+        
       }
     }
   ]

@@ -21,7 +21,7 @@ module.exports = {
                 from: 'Unitymed',
                 to: medic.email,
                 subject: 'Your account has been accepted!',
-                html: '<h1>Hey! We have great news for you! An admin has just accepted your account. You can now log into your account and start helping people</h1>'
+                html: '<h1>Hey! We have great news for you! An admin has just accepted your account. You can now <a href="http://localhost:8080/login">log into</a> your account and start helping people</h1>'
             }).then(
                 () =>{
                     res.send(medic)
@@ -47,6 +47,22 @@ module.exports = {
             ).catch(next)
         }
         catch(err){
+            next(err)
+        }
+    },
+    //TODO: Add only one user/review
+    async rateMedic(req, res, next){
+        try {
+            UserModel.findOne({_id: req.params.id}).then((medic) =>{
+                console.log(req.body);
+                medic.reviews.push(req.body.review);
+                medic.reviewedBy.push(req.body.userId)
+                medic.save();
+                console.log(medic)
+                res.send(medic)
+            })
+        } 
+        catch (err) {
             next(err)
         }
     }

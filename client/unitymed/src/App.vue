@@ -9,10 +9,8 @@
 
           <v-navigation-drawer app v-model="drawer">
             <p class="navMenu">Menu</p> 
-            <p class="nav" v-if='!isUserLoggedIn'>Login</p> 
-            <p class="nav" v-if='!isUserLoggedIn'>Register</p>
-            <p class="nav" v-if='isUserLoggedIn'>Profile</p> 
-            <p class="nav" v-if='isUserLoggedIn'>Messages</p>
+            <router-link v-if='!isUserLoggedIn' to='/login' tag='p' class='nav'>Login</router-link>
+            <router-link v-if='!isUserLoggedIn' to='/register' tag='p' class='nav'>Register</router-link>
             <p class="nav" v-if='isUserLoggedIn' @click='logOut'>Sign-out</p>
 
           </v-navigation-drawer>
@@ -45,7 +43,7 @@ export default {
         localStorage.removeItem('user')
         localStorage.removeItem('jwt');
         this.$store.commit('switchUserState')
-        this.$router.push('login')
+        this.$router.push({name: 'login'})
       }
   }
 }

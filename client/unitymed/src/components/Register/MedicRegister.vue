@@ -88,7 +88,7 @@ export default {
           number: '',
           date: ''
         },
-        specializare: "",
+        specialization: "",
         status: 1
       },
     }

@@ -1,7 +1,7 @@
 <template>
     <div class="boxes">
         <router-link tag="div" class="box" id="box2" to="/quiz"><p>I have a problem</p></router-link>
-        <div class="box" id="box1"><p>See medical history</p></div>
+        <router-link tag="div" class="box" id="box1" to="/history"><p>See medical history</p></router-link>
         <div class="box" id="box3"><p>Find a check-up doctor</p></div>
     </div>
 </template>

@@ -14,5 +14,8 @@ export default {
     },
     getAllMedics(query){
         return Api().get('medics', {params:query})
+    },
+    rateMedic(id, payload){
+        return Api().post(`/medic/${id}/ratings`, payload)
     }
 }
