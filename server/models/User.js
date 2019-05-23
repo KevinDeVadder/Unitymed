@@ -37,7 +37,11 @@ const UserSchema = new Schema({
     },
     specialization: String,
     reviewedBy: [String],
-    reviews:[Number]
+    reviews:[Number],
+    bloodType: String,
+    height: Number,
+    weight: Number,
+    age: Number
 
 });
 

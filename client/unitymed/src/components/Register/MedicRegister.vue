@@ -54,7 +54,7 @@
           ></v-text-field>
           <v-text-field
             ref="Specialization"
-            v-model="user.specializare"
+            v-model="user.specialization"
             :rules="[() => !!user.specializare || 'This field is required']"
             :error-messages="errorMessages"
             label="Specialization"

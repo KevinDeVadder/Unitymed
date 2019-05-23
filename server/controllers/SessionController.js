@@ -1,5 +1,7 @@
 const SessionModel = require('../models/Session');
 const UserModel = require('../models/User');
+const mail = require('../helpers/mailconfig')
+
 
 module.exports = {
     async getAllSessions(req, res, next) {
@@ -15,6 +17,18 @@ module.exports = {
     async createSession(req, res, next){
         try{
             const session = await SessionModel.create({patientId: req.body.userId, medicId: req.body.medicId, patientName: req.body.patientName, medicName: req.body.medicName, diagnosis: req.body.diagnosis, accepted: false})
+            const medic = await UserModel.findById({_id: req.body.medicId})
+            mail.transporter.sendMail({
+                from: 'Unitymed',
+                to: medic.email,
+                subject: 'Your have a new in-app checkup request!',
+                html: '<h1>Hey! We have news for you! Someone just sent a checkup request. Please review it and accept/reject it ASAP.</h1>'
+            }).then(
+                () =>{
+                    res.send(medic)
+                }
+            ).catch(next)
+            
             // console.log(session)
             res.send(session)
         }

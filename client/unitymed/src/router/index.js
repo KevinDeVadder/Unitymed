@@ -2,16 +2,26 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Quiz from '@/components/Quiz/index'
+
+
 import Dashboard from '@/components/Dashboard/index'
+
 import Login from '@/components/Login'
 import Register from '@/components/Register/index'
-import UserStory from '@/components/UserStory'
-import MedicStory from '@/components/MedicStory'
-import MedicalHistory from '@/components/MedicalHistory'
-import MedicalHistoryMed from '@/components/MedicalHistoryMed'
-import MedicList from '@/components/Medic/MedicList'
-import AccessDenied from '@/components/AccessDenied'
+
 import Chat from '@/components/Chat/index'
+
+import UserProfile from '@/components/UserProfile'
+
+import MedicStory from '@/components/MedicStory'
+
+import MedicalHistory from '@/components/MedicalHistory'
+
+import MedicalHistoryMed from '@/components/MedicalHistoryMed'
+
+import MedicList from '@/components/Medic/MedicList'
+
+import AccessDenied from '@/components/AccessDenied'
 
 
 Vue.use(Router)
@@ -26,24 +36,6 @@ let router = new Router({
       path: '/accessdenied',
       name: 'Denied',
       component: AccessDenied
-    },
-
-    {
-      path: '/quiz',
-      name: 'Quiz',
-      component: Quiz,
-      meta:{
-        requiresAuth: true,
-      }
-    },
-    {
-      path: '/dashboard',
-      name: 'Dashboard',
-      component: Dashboard,
-      meta: { 
-        requiresAuth: true,
-        sys_admin : true
-      }
     },
     {
       path: '/login',
@@ -61,18 +53,23 @@ let router = new Router({
         guest: true
       }
     },
+
+
+    {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard,
+      meta: { 
+        requiresAuth: true,
+        sys_admin : true
+      }
+    },
+
+
     {
       path: '/patient',
       name: 'UserStory',
-      component: UserStory,
-      meta: { 
-        requiresAuth: true,
-      }
-    },
-    {
-      path: '/medic',
-      name: 'MedicStory',
-      component: MedicStory,
+      component: UserProfile,
       meta: { 
         requiresAuth: true,
       }
@@ -85,6 +82,25 @@ let router = new Router({
         requiresAuth: true,
       }
     },
+    {
+      path: '/quiz',
+      name: 'Quiz',
+      component: Quiz,
+      meta:{
+        requiresAuth: true,
+      }
+    },
+
+
+    {
+      path: '/medic',
+      name: 'medic',
+      component: MedicStory,
+      meta: { 
+        requiresAuth: true,
+      }
+    },
+
     {
       path: '/historymed',
       name: 'MedicalHistory',
@@ -101,6 +117,8 @@ let router = new Router({
         requiresAuth: true,
       }
     },
+
+
     {
       path: '/chat/:id',
       name: 'Chat',

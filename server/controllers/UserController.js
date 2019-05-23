@@ -48,6 +48,12 @@ module.exports = {
                     name: user.name,
                     email: user.email,
                     status: user.status,
+                    profile:{
+                        bloodType: user.bloodType,
+                        height: user.height,
+                        weight: user.weight,
+                        age: user.age
+                    }
                 }
                 const token = jwt.sign({id: user._id, status: user.status}, req.app.get('secretKey'), { expiresIn: '1h' });
                 res.json({status:"success", message: "user found!!!", data:{user: toSend, token:token}});
@@ -101,5 +107,26 @@ module.exports = {
         else{
          res.status(403).json({status: "error", message: "Forbidden"});
          }
+     },
+     async updateUser(req, res, next){
+        var data = req.body
+        try{
+            const user = await UserModel.findByIdAndUpdate({_id:data.userId}, {age: data.age, bloodType: data.bloodType, height: data.height, weight: data.weight}, {new: true})
+            const toSend = {
+                name: user.name,
+                email: user.email,
+                status: user.status,
+                profile:{
+                    bloodType: user.bloodType,
+                    height: user.height,
+                    weight: user.weight,
+                    age: user.age
+                }
+            }
+            res.send(toSend)
+        }
+        catch(err){
+            next(err)
+        }
      }
    }

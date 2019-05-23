@@ -17,5 +17,8 @@ export default {
     },
     rateMedic(id, payload){
         return Api().put(`/session/${id}/rate`, payload)
+    },
+    updateProfile(payload){
+        return Api().put('/user/profile', payload)
     }
 }
