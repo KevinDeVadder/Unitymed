@@ -1,15 +1,14 @@
 <template>
 <div>
     <v-flex xs8 offset-xs2 justify-center class="my-5">
-    <div class="white elevation-2">
-      <v-toolbar flat dense class="green lighten-1" dark>
-        <v-toolbar-title>
-          {{session.patientName}} - {{session.medicName}}
-        </v-toolbar-title>
+    <span class="title">Patient name: {{session.patientName}}</span><br>
+    <span class="title">Medic name: {{session.medicName}}</span>
+    <div class="white elevation-2 mt-2">
+      <v-toolbar flat dense class="green lighten-1 py-2" dark>
+        <feedback-form :sessionId="session._id" :rating="session.rating" />
         <v-spacer></v-spacer>
-        <feedback-form :medicId="session.medicId" />
+        <v-btn class="green darken-1" dark>Start call</v-btn>
       </v-toolbar>
-
       <chat :session="session" />
     </div>
     </v-flex>

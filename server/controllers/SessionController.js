@@ -1,4 +1,5 @@
 const SessionModel = require('../models/Session');
+const UserModel = require('../models/User');
 
 module.exports = {
     async getAllSessions(req, res, next) {
@@ -42,6 +43,29 @@ module.exports = {
             const session = await SessionModel.findById({_id: req.params.id})
             res.send(session)
         } catch (err) {
+            next(err)
+        }
+    },
+    async rateMedic(req, res, next){
+        try {
+            var session = await SessionModel.findOne({_id: req.params.id})
+            var medic = await UserModel.findOne({_id: session.medicId})
+            // console.log(medic.reviewedBy);
+            if(!session.rating){
+                session.rating = req.body.review
+                medic.reviews.push(req.body.review);
+                medic.reviewedBy.push(req.body.userId)
+                medic.save();
+                session.save()
+                console.log(medic)
+                res.send(session)
+            }
+            else{
+                res.status(406).send({'error': 'User has already rated the medic'})
+            }
+        } 
+        catch (err) {
+            console.log(err)
             next(err)
         }
     }

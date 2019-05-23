@@ -1,18 +1,19 @@
 <template>
   <div>
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-model="dialog" persistent max-width="600px" v-if="!rating">
       <template v-slot:activator="{ on }">
-        <v-btn class="green lighten-1" dark v-on="on">Review medic</v-btn>
+        <v-btn class="green darken-1" dark v-on="on">Review medic</v-btn>
       </template>
       <v-card>
         <v-card-title>
           <span class="headline">Rate this medic</span>
         </v-card-title>
         <v-card-text>
+          <small>*you can only review a medic once and can't change your review later</small>
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs12>
-                    <v-rating v-model="rating" half-increments></v-rating>
+                    <v-rating v-model="rating" color="green darken-1" half-increments></v-rating>
                 </v-flex>
             </v-layout>
           </v-container>
@@ -24,6 +25,10 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <div v-else>
+      <span>Rating:</span>
+      <v-rating v-model="rating" color="white" background-color="white" readonly half-increments></v-rating>
+    </div>
   </div>
 </template>
 <script>
@@ -32,17 +37,16 @@ import UserService from '@/services/UserService'
 export default {
   data () {
     return {
-        rating: 0,
         dialog: false
     }
   },
   methods: {
     async submit(){
-        const medic = await UserService.rateMedic(this.medicId, {review: this.rating})
+        const medic = await UserService.rateMedic(this.sessionId, {review: this.rating})
         this.$router.go()
     }
   },
-  props: ["medicId"]
+  props: ["sessionId", "rating"]
 }
 </script>
 

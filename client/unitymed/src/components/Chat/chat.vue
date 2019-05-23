@@ -1,17 +1,17 @@
 <template>
   <div>
-      <div class="pl-4 pr-4 pt-2 pb-2">
-        <h4 v-for="message in messages">{{message.emitterName}}: {{message.message}}</h4>
-                <v-text-field
-            ref="content"
-            v-model="content"
-            :rules="[() => !!user.email || 'This field is required']"
-            :error-messages="errorMessages"
-            label="Message"
-            placeholder="Type here..."
-            v-on:keyup.enter="sendMessage"
-            
-          ></v-text-field>
+      <div class="pl-4 pr-4 py-3 message-container">
+        <h4  v-for="message in session.conversation">{{message.emitterName}} says: {{message.message}}</h4>
+        <v-text-field
+        ref="content"
+        v-model="content"
+        :error-messages="errorMessages"
+        label="Message"
+        placeholder="Type here..."
+        v-on:keyup.enter="sendMessage"
+        color="green darken-2"
+        class="pt-5"
+        ></v-text-field>
       </div>
   </div>
 </template>
@@ -26,12 +26,11 @@ export default {
     return {
         content: '',
         user: JSON.parse(localStorage.getItem('user')),
-        messages:[]
     }
   },
   async mounted() {
       socket.emit('joinRoom', this.$route.params.id)
-      socket.on('chat', (data)=>this.messages.push(data))
+      socket.on('chat', (data)=>this.session.conversation.push(data))
       // socket.on('success', ()=>console.log('success'))
   },
   methods: {
@@ -51,5 +50,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+/*TODO: Style the message container */
+.message-container{
+    display: flex;
+    flex-direction: column;
+}
+.message-container h4{
+    align-self: flex-start
+}
 
 </style>

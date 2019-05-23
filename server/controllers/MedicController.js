@@ -49,21 +49,5 @@ module.exports = {
         catch(err){
             next(err)
         }
-    },
-    //TODO: Add only one user/review
-    async rateMedic(req, res, next){
-        try {
-            UserModel.findOne({_id: req.params.id}).then((medic) =>{
-                console.log(req.body);
-                medic.reviews.push(req.body.review);
-                medic.reviewedBy.push(req.body.userId)
-                medic.save();
-                console.log(medic)
-                res.send(medic)
-            })
-        } 
-        catch (err) {
-            next(err)
-        }
     }
    }

@@ -21,9 +21,11 @@ const SessionSchema = new Schema({
         type: Boolean
     },
     conversation:[{
-        emmiter: String,
+        emitter: String,
+        emitterName: String,
         message: String
-    }]
+    }],
+    rating: Number
 });
 
 const Session = mongoose.model('session', SessionSchema);
