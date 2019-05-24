@@ -17,8 +17,7 @@
 
       <div class="pl-4 pr-4 pt-2 pb-2">
         <h3>Diagnosis: {{session.diagnosis}}</h3>
-        <v-btn class="green lighten-1" dark @click="acceptSession" ><v-icon left dark>check</v-icon>Accept</v-btn>
-        <v-btn class="green lighten-1" dark @click="rejectSession"><v-icon left dark>close</v-icon>Reject</v-btn>
+        <v-btn class="green lighten-1" dark :to="{name: 'Chat', params:{id:session._id}}">See Chat</v-btn>
       </div>
     </div>
     </v-flex>
@@ -35,15 +34,6 @@ export default {
   },
   props:['session'],
   methods: {
-    async acceptSession(){
-      const session = (await SessionService.acceptSession(this.session._id)).data
-      // console.log(session)
-      this.$router.go({name: 'Chat'}, {params:{id: session._id}})
-    },
-    async rejectSession(){
-      const session = (await SessionService.deleteSession(this.session._id)).data
-      this.$router.go()
-    }
   },
 }
 </script>

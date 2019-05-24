@@ -14,7 +14,7 @@ import Quiz from '@/components/Quiz/index'
 import MedicList from '@/components/MedicList/MedicList'
 
 import SessionRequests from '@/components/SessionRequests/index'
-
+import MedicHistory from '@/components/MedicHistory/index'
 
 import AccessDenied from '@/components/AccessDenied'
 
@@ -107,15 +107,15 @@ let router = new Router({
         medic: true
       }
     },
-
-    // {
-    //   path: '/historymed',
-    //   name: 'MedicalHistory',
-    //   component: MedicalHistoryMed,
-    //   meta: { 
-    //     requiresAuth: true,
-    //   }
-    // },
+    {
+      path: '/medic/history',
+      name: 'MedicHistory',
+      component: MedicHistory,
+      meta: { 
+        requiresAuth: true,
+        medic: true
+      }
+    },
 
 
     {
