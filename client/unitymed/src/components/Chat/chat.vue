@@ -1,11 +1,12 @@
 <template>
   <div>
-      <div class="pl-4 pr-4 py-3 message-container">
+      <div class="px-4 py-3 message-container">
         <h4  v-for="message in session.conversation">{{message.emitterName}} says: {{message.message}}</h4>
+      </div>
+      <div class="px-4">
         <v-text-field
         ref="content"
         v-model="content"
-        :error-messages="errorMessages"
         label="Message"
         placeholder="Type here..."
         v-on:keyup.enter="sendMessage"
@@ -54,6 +55,9 @@ export default {
 .message-container{
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    height: calc(60vh - 9.5rem);
+    overflow-y: auto;
 }
 .message-container h4{
     align-self: flex-start

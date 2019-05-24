@@ -16,6 +16,7 @@ router.get('/confirm/:token', userController.confirm)
 router.get('/users',  userController.getAllUsers)
 router.post('/users', validators.validateAdmin, userController.addSpecial)
 router.put('/user/profile', validators.validateUser, userController.updateUser)
+router.get('/user/:id/profile', validators.validateUser, userController.getProfile)
 
 router.get('/medics',  validators.validateUser, medicController.getAllMedics)
 router.put('/medic/:id/confirm', validators.validateAdmin, medicController.confirmMedic)

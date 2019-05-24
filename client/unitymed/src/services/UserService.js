@@ -20,5 +20,8 @@ export default {
     },
     updateProfile(payload){
         return Api().put('/user/profile', payload)
+    },
+    getProfile(id){
+        return Api().get(`/user/${id}/profile`)
     }
 }

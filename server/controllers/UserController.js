@@ -128,5 +128,16 @@ module.exports = {
         catch(err){
             next(err)
         }
+     },
+     async getProfile(req, res, next){
+         try{
+             console.log(req.params.id)
+            const user = await UserModel.findById({_id: req.params.id}, 'name bloodType age height weight')
+            res.send(user)
+         }
+         catch(err){
+            //  console.log(err)
+            next(err)
+         }
      }
    }
