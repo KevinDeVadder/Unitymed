@@ -10,14 +10,14 @@
             >
             account_circle
           </v-icon>
-          Mister Gentleman Handsome Patient
+          {{session.medicName}}
         </v-toolbar-title>
         <slot name="action" />
       </v-toolbar>
 
       <div class="pl-4 pr-4 pt-2 pb-2">
-        <h3>Diagnosis:</h3>
-        <v-btn class="green lighten-1" dark>See Chat</v-btn>
+        <h3>Diagnosis: {{session.diagnosis}}</h3>
+        <v-btn class="green lighten-1" dark :to="{name: 'Chat', params:{id:session._id}}">See Chat</v-btn>
       </div>
     </div>
     </v-flex>
@@ -29,7 +29,8 @@ export default {
   data(){
     return{
     }
-  }
+  },
+  props:['session']
 }
 </script>
 

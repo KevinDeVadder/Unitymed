@@ -6,11 +6,13 @@ const mail = require('../helpers/mailconfig')
 module.exports = {
     async getAllSessions(req, res, next) {
         try{
-            req.query.patientId = req.body.userId
-            const sessions = await SessionModel.find(query)
+            if(req.body.status==0){req.query.patientId = req.body.userId, req.query.accepted=true}
+            else if(req.body.status==1)req.query.medicId = req.body.userId
+            const sessions = await SessionModel.find(req.query)
             res.send(sessions)
         }
         catch(err){
+            console.log(err)
             next(err)
         }
     },
@@ -46,11 +48,63 @@ module.exports = {
     },
     async acceptSession(req, res, next){
         try{
-
+            var session = await SessionModel.findById({_id:req.params.id})
+            // console.log(session.medicId != req.body.userId)
+            // console.log(session)
+            // console.log(session.medicId)
+            // console.log(req.body.userId)
+            if(session.medicId != req.body.userId){
+                res.status(403).send({"error": "you are now allowed to take this action"})
+            }
+            else{
+                session.accepted = true
+                session.save()
+                const patient = await UserModel.findById({_id: session.patientId}, 'email')
+                // console.log(patient)
+                mail.transporter.sendMail({
+                    from: 'Unitymed',
+                    to: patient.email,
+                    subject: 'Your checkup request has been approved!',
+                    html: `<h1>Hey! We have news for you! Your checkup request for ${session.diagnosis} was accepted by the medic ${session.medicName}. You can open the app and start chatting with him</h1>`
+                }).then(
+                    () =>{
+                        res.send(session)
+                    }
+                )
+                .catch(err => console.log(err))                
+            }
         }
         catch(err){
+            console.log(err)
             next(err)
         }
+    },
+    async deleteSession(req, res, next){
+        try{
+            var session = await SessionModel.findByIdAndDelete({_id:req.params.id})
+            if(session.medicId != req.body.userId){
+                res.status(403).send({"error": "you are now allowed to take this action"})
+            }
+            else{
+                const patient = await UserModel.findById({_id: session.patientId}, 'email')
+                // console.log(patient)
+                mail.transporter.sendMail({
+                    from: 'Unitymed',
+                    to: patient.email,
+                    subject: 'Your checkup request has been denied!',
+                    html: `<h1>Hello! We are sorry to inform you that your checkup request for ${session.diagnosis} was rejected by the medic ${session.medicName}. You can open the app and try finding another doctor</h1>`
+                }).then(
+                    () =>{
+                        res.send(session)
+                    }
+                )
+                .catch(err => console.log(err))                
+            }
+        }
+        catch(err){
+            console.log(err)
+            next(err)
+        }  
     },
     async getOneSession(req, res, next){
         try {

@@ -9,22 +9,22 @@
             ref="email"
             v-model="user.email"
             :rules="[() => !!user.email || 'This field is required']"
-            :error-messages="errorMessages"
             label="Email"
             placeholder="basicemail@gmail.com"
             required
+            color="green darken-1"
           ></v-text-field>
           <v-text-field
             ref="password"
             v-model="user.password"
-            :type="show1 ? 'text' : 'password'"
+            type='password'
             :rules="[
-              () => !!user.password || 'This field is required',
-              passwordCheck
+              () => !!user.password || 'This field is required'
             ]"
             label="Password"
             placeholder="Password"
             required
+            color="green darken-1"
           ></v-text-field>
         </v-card-text>
         <v-divider class="mt-5"></v-divider>
@@ -58,7 +58,7 @@ export default {
       if(!(this.user.email === '') && !(this.user.password === '')){
         try{
           const response = (await AuthenticationService.login(this.user)).data
-          // console.log(response.data);
+          // console.log(response);
           localStorage.setItem('user',JSON.stringify(response.data.user))
           localStorage.setItem('jwt',response.data.token)
           this.$store.commit('switchUserState')
@@ -66,7 +66,7 @@ export default {
             this.$router.push({name:'UserStory'})
           }
           else if(response.data.user.status==1){
-            this.$router.push({name:'medic'})
+            this.$router.push({name:'SessionRequests'})
           }
           else if(response.data.user.status==2){
             this.$router.push('/dashboard')

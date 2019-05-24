@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello pt-7">
     <img src='../assets/tenor.gif'/>
   </div>
 </template>
@@ -13,6 +13,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .hello{
+    padding-top: 20vh;
     height: 100vh}
 
 </style>

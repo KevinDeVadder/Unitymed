@@ -46,7 +46,8 @@ export default {
   methods: {
     async createNewSession(){
       const session = (await SessionService.createSession({medicId: this.medic._id, medicName: this.medic.name, patientName: this.user.name, diagnosis: this.$route.query.diagnosis})).data
-      this.$router.push({name:'Chat', params:{id: session._id}})
+      alert("You have requested a checkup for this doctor, you will recieve a mail when it is approved")
+      this.$router.push('patient')
     }
   },
 }

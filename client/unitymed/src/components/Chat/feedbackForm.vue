@@ -13,7 +13,7 @@
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs12>
-                    <v-rating v-model="rating" color="green darken-1" half-increments></v-rating>
+                    <v-rating v-model="ratinger" color="green darken-1" half-increments></v-rating>
                 </v-flex>
             </v-layout>
           </v-container>
@@ -37,12 +37,13 @@ import UserService from '@/services/UserService'
 export default {
   data () {
     return {
-        dialog: false
+        dialog: false,
+        ratinger:0
     }
   },
   methods: {
     async submit(){
-        const medic = await UserService.rateMedic(this.sessionId, {review: this.rating})
+        const medic = await UserService.rateMedic(this.sessionId, {review: this.ratinger})
         this.$router.go()
     }
   },

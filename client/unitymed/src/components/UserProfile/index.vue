@@ -16,7 +16,7 @@
         </v-flex>
         <v-container>
           <v-btn color="green darken-1" dark to="quiz">I have a problem</v-btn>
-          <v-btn color="green darken-1" dark to="history">See older in-app checkups</v-btn>
+          <v-btn color="green darken-1" dark to="user/history">See older in-app checkups</v-btn>
           <v-btn color="green darken-1" dark to="checkups/schedule">Schedule a checkup IRL</v-btn>
         </v-container>
     </v-flex>

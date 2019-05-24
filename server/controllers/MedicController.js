@@ -7,10 +7,11 @@ module.exports = {
             req.query.status = 1
             req.query.specialization = req.query.specialization.charAt(0).toUpperCase() + req.query.specialization.slice(1);
             // console.log(req.query)
-            const medics = await UserModel.find(req.query, 'name reviews reviewedBy specialization')
+            const medics = await UserModel.find(req.query, 'name reviews reviewedBy specialization').sort('-reviews')
             res.send(medics)
         }
         catch(err){
+            console.log(err)
             next(err)
         }
     },

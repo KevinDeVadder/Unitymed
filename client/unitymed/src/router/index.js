@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Quiz from '@/components/Quiz/index'
-
-
 import Dashboard from '@/components/Dashboard/index'
 
 import Login from '@/components/Login'
@@ -12,14 +9,12 @@ import Register from '@/components/Register/index'
 import Chat from '@/components/Chat/index'
 
 import UserProfile from '@/components/UserProfile'
+import UserHistory from '@/components/UserHistory/index'
+import Quiz from '@/components/Quiz/index'
+import MedicList from '@/components/MedicList/MedicList'
 
-import MedicStory from '@/components/MedicStory'
+import SessionRequests from '@/components/SessionRequests/index'
 
-import MedicalHistory from '@/components/MedicalHistory'
-
-import MedicalHistoryMed from '@/components/MedicalHistoryMed'
-
-import MedicList from '@/components/Medic/MedicList'
 
 import AccessDenied from '@/components/AccessDenied'
 
@@ -72,14 +67,16 @@ let router = new Router({
       component: UserProfile,
       meta: { 
         requiresAuth: true,
+        patient: true
       }
     },
     {
-      path: '/history',
-      name: 'ClientHistory',
-      component: MedicalHistory,
+      path: '/user/history',
+      name: 'UserHistory',
+      component: UserHistory,
       meta: { 
         requiresAuth: true,
+        patient: true
       }
     },
     {
@@ -88,25 +85,7 @@ let router = new Router({
       component: Quiz,
       meta:{
         requiresAuth: true,
-      }
-    },
-
-
-    {
-      path: '/medic',
-      name: 'medic',
-      component: MedicStory,
-      meta: { 
-        requiresAuth: true,
-      }
-    },
-
-    {
-      path: '/historymed',
-      name: 'MedicalHistory',
-      component: MedicalHistoryMed,
-      meta: { 
-        requiresAuth: true,
+        patient: true
       }
     },
     {
@@ -117,6 +96,26 @@ let router = new Router({
         requiresAuth: true,
       }
     },
+
+
+    {
+      path: '/medic/session-requests',
+      name: 'SessionRequests',
+      component: SessionRequests,
+      meta: { 
+        requiresAuth: true,
+        medic: true
+      }
+    },
+
+    // {
+    //   path: '/historymed',
+    //   name: 'MedicalHistory',
+    //   component: MedicalHistoryMed,
+    //   meta: { 
+    //     requiresAuth: true,
+    //   }
+    // },
 
 
     {
@@ -141,6 +140,22 @@ router.beforeEach((to, from, next)=>{
 
       if(to.matched.some(record => record.meta.sys_admin)){
         if(user.status == 2){
+          next()
+        }
+        else{
+          next({ name: 'Denied'})
+        }
+      }
+      else if(to.matched.some(record => record.meta.patient)){
+        if(user.status == 0){
+          next()
+        }
+        else{
+          next({ name: 'Denied'})
+        }
+      }
+      else if(to.matched.some(record => record.meta.medic)){
+        if(user.status == 1){
           next()
         }
         else{

@@ -21,9 +21,12 @@ router.get('/medics',  validators.validateUser, medicController.getAllMedics)
 router.put('/medic/:id/confirm', validators.validateAdmin, medicController.confirmMedic)
 router.delete('/medic/:id', validators.validateAdmin, medicController.deleteMedic)
 
+router.get('/sessions', validators.validateUser, sessionController.getAllSessions)
 router.post('/sessions', validators.validateUser, sessionController.createSession)
 router.get('/session/:id', validators.validateUser, sessionController.getOneSession)
 router.put('/session/:id/rate', validators.validateUser, sessionController.rateMedic)
+router.put('/session/:id/accept', validators.validateUser, sessionController.acceptSession)
+router.delete('/session/:id', validators.validateUser, sessionController.deleteSession)
 
 
 
